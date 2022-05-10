@@ -47,7 +47,6 @@ skip_y:
 
 end:
     mov [eax], si
-    ;PRINTF32 `%hd\n\x0`, [eax]
 
     ;; Your code ends here
     
