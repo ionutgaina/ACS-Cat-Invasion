@@ -79,7 +79,6 @@ second_case:
 skip_second_case:
     mov [esi], al
 
-    ;PRINTF32 `=============: %d\n\x0`, eax
 
     pop eax
     pop ecx
@@ -92,8 +91,8 @@ skip_second_case:
 
     cmp eax, dword[len_plain]   ; iterarea prin textul plain
     jl while_plain
-    ;PRINTF32 `eax: %d\n\x0`, eax
-    ;PRINTF32 `eax: %d\n\x0`, ecx
+
+
     ;; FREESTYLE ENDS HERE
     ;; DO NOT MODIFY
     popa
