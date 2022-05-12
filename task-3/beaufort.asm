@@ -70,7 +70,7 @@ second_case:
         ; case 2 formula 'Z' - b + a + 1
 
     push eax        ; salvez valoarea in stack
-    mov al, 'Z
+    mov al, 'Z'
     sub al, cl      ; 'Z' - b
     pop ecx         ; scot valoarea din stack
     add al, cl      ; ('Z' - b)

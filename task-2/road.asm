@@ -25,11 +25,14 @@ road:
     mov esi, 0
     dec ecx
 while:
+    ; use function points_distance from previous task
+    ; we push the arguments (address of distances and points)
     push ebx
     push eax
     call points_distance
     add esp, 8
     
+    ; we move on to the address of the next element from eax and ebx
     add eax, point_size
     add ebx, 4
 

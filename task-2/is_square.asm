@@ -52,8 +52,8 @@ skip:
 
     pop eax ; take the saved value from stack
 
-    add ebx, 4 ; add the padding
-    add ecx, 4
+    add ebx, 4 ; go to next value from array (dist)
+    add ecx, 4 ; next element from array (sq)
 
     inc eax
     cmp eax, [nr]

@@ -26,15 +26,15 @@ spiral:
     ;; TODO: Implement spiral encryption
     ;; FREESTYLE STARTS HERE
     
-    ;PRINTF32 `eax: %d\n\x0`, eax
-
+    ; move to variables
     mov dword[n], eax
     mov dword[plain], ebx
     mov dword[key], ecx
     mov dword[enc_string], edi
-
-    PRINTF32 `eax: %d\n\x0`, eax
+    
     push ebx
+
+    ; free some registers for div instruction
     xor eax, eax
     xor edx, edx
     xor ebx, ebx
@@ -66,8 +66,8 @@ while_matrix:
 
     mov eax, [n]
 
-    sub eax, esi 
-    dec eax
+    sub eax, esi ; n - i
+    dec eax ; programmers count from 0 !
     ; START
     push esi
     ;PRINTF32 `latura %d\n\x0`, esi
@@ -83,7 +83,7 @@ upper_side:
 
     mov eax, dword[ecx]     ; take integer from key[][]
     ;PRINTF32 `%d \x0`, eax
-    add ecx, 4
+    add ecx, 4  ; next column same row
     
     add edx, eax            ; encrypt
     mov byte[edi], dl       ; put crypted letter in enc_ecrypt
@@ -94,9 +94,9 @@ upper_side:
     inc esi
     cmp esi, eax
     jl upper_side
-    ; END 
 
     pop esi
+    ; END 
     ; START
     push esi
     ;PRINTF32 `latura %d\n\x0`, esi
@@ -118,7 +118,7 @@ right_side:
     ;PRINTF32 `%d \x0`, eax
 
 
-    ; + 4 * ebx
+    ; + 4 * ebx ( go to below row same column)
     add ecx, ebx
     add ecx, ebx
     add ecx, ebx
@@ -155,7 +155,7 @@ bottom_side:
 
     mov eax, dword[ecx]     ; take integer from key[][]
     ;PRINTF32 `%d \x0`, eax
-    sub ecx, 4
+    sub ecx, 4  ; go to left column same row
 
     add edx, eax            ; encrypt
     mov byte[edi], dl       ; put crypted letter in enc_ecrypt
@@ -189,7 +189,7 @@ left_side:
     ;PRINTF32 `plain: %d\n\x0`, eax
 
 
-    ; - 4 * ebx
+    ; - 4 * ebx ( go to above row same column)
     sub ecx, ebx
     sub ecx, ebx
     sub ecx, ebx
@@ -211,6 +211,7 @@ left_side:
     mov ebx, dword[n]
 
     ; I take it to the next square/quadrant ( + 4 * ebx + 4)
+    ; go to next row and next column
     add ecx, ebx
     add ecx, ebx
     add ecx, ebx
@@ -230,6 +231,9 @@ left_side:
 
 skip_matrix:
 
+    ; Here is for if n is odd number
+    ; The addres is in perfect position from above
+    ; 
     pop edx
 
     cmp edx, 0
